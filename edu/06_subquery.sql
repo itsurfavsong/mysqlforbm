@@ -1,4 +1,4 @@
--- 서브쿼리 SubQuery
+-- 서브쿼리 SubQuery (많이 쓰는 것을 권장X, 느리다)
 
 -- ---------------------
 -- WHERE 절에서 사용
@@ -63,10 +63,84 @@ SELECT
 	employees.*
 FROM employees
 WHERE 	
-	employees.emp_id IN(
+	employees.emp_id IN (
 		SELECT department_managers.emp_id
 		FROM department_managers
 		WHERE 
 			department_managers.emp_id = employees.emp_id
 	)
 ;
+
+-- ---------------------------
+-- SELECT 절에서 사용하는 쿼리 (굉장히 느리다. 성능이슈가 존재한다)
+-- ---------------------------
+-- 사원별 역대 전체 급여 평균
+SELECT 
+	emp.emp_id
+	,(
+		SELECT AVG(sal.salary)
+		FROM salaries sal
+		WHERE emp.emp_id = sal.emp_id
+	) AS avg_sal
+FROM employees emp
+;
+
+-- ------------------------
+-- FROM절에서 사용
+-- ------------------------
+-- JOIN 사용하기 전에 직계함수 먼저 계산할 때 이용된다. 
+-- 데이터 필터 느낌(?)
+SELECT
+	tmp.*	
+FROM (
+	SELECT 
+		emp.emp_id
+		,emp.`name`
+	FROM employees emp
+) AS tmp
+;
+
+-- ------------------------
+-- INSERT문에서 사용
+-- ------------------------
+INSERT INTO title_emps(
+	emp_id
+	,title_code
+	,start_at
+)
+VALUES(
+	(SELECT MAX(emp_id) FROM employees)
+	,(SELECT title_code FROM titles WHERE title = '사원')
+	,DATE(NOW())
+);
+
+-- ------------------------
+-- UPDATE문에서 사숑
+-- ------------------------
+-- UPDATE문에 table과 subquery 안의 table이 중복될 수 없다. 
+-- UPDATE 
+-- 	title_emps t1
+-- SET 
+-- 	t1.end_at = (
+-- 		SELECT t2.start_at
+-- 		FROM title_emps t2
+-- 		WHERE t2.title_emp_id = 181447
+-- 	)
+-- WHERE 
+-- 	t1.title_emp_id = 60614
+-- 	;
+
+UPDATE 
+	title_emps t1
+SET 
+	t1.end_at = (
+		SELECT emp.fire_at
+		FROM employees emp
+		WHERE emp.emp_id = 100000
+	)
+WHERE 
+	t1.emp_id = 100000
+	AND t1.end_at IS NULL
+;
+
+	

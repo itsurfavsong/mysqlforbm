@@ -190,3 +190,6 @@ SELECT
 	,salary
 	,ROW_NUMBER() OVER(ORDER BY salary ASC) AS sal_rank
 FROM salaries;
+
+-- 
+-- 
