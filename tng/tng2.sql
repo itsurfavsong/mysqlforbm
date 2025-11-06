@@ -163,7 +163,6 @@ FROM
 		ON sal.emp_id = emp.emp_id
 GROUP BY 
 	emp.`name`
-	,sal.emp_id
 ;
 
 -- 또다른 방법
@@ -244,7 +243,6 @@ ORDER BY
 -- 10. 성별이 여자인 사원들의 직급별 사원수를 출력해 주세요.
 SELECT 
 	tl.title
-	,emp.gender
 	,COUNT(emp.gender) AS employees_by_genders
 FROM employees emp
 	JOIN title_emps tl_e
@@ -256,7 +254,6 @@ WHERE
 	emp.fire_at IS NULL
 GROUP BY 
 	tl.title
-	,emp.gender
 	,tl.title_code
 ORDER BY 
 	tl.title_code DESC
