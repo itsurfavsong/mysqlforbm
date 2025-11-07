@@ -59,6 +59,7 @@ SELECT * FROM employees WHERE emp_id IN (1, 3)
 
 -- self join
 -- 같은 테이블 끼리 join 
+-- 원래 하나의 테이블에 있는 정보로, 서로 “관계가 있는 두 행”을 함께 보고 싶을 때
 SELECT 
 	emp.emp_id AS junior_id
 	,emp.`name` AS junior_name
