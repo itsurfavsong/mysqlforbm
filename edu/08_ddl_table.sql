@@ -68,7 +68,7 @@ CREATE TABLE posts(
 
 -- fk pk unique 다 schema와 관련됨
 -- fk는 선택사항이다. 
--- 제약조건명-테이블명-컬럼명
+-- contraint 이름 정하는 규칙은 제약조건명-테이블명-컬럼명
 -- constraint 는 FK때 사용하고 다른 때는 잘 사용안한다. 
 ALTER TABLE posts
 	ADD CONSTRAINT fk_posts_user_id
@@ -105,6 +105,7 @@ MODIFY COLUMN gender VARCHAR(10) NOT NULL COMMENT '남자, 여자, 미선택'
 ;
 -- 컬럼의 순서 상관쓰지마라. 순서 맞추고 싶다고 해서 중간에 넣으면 과부화 생김. 
 -- DB에 fk가 걸리는 테이블이 있다면 프로그래밍단에서 삭제하고 싶어도 안된다. 오류로 반환함. 
+-- 그래서 선생님이 잘 안씀 fk를
 
 -- ----------------------
 -- AUTO_INCREMENT 값 변경
