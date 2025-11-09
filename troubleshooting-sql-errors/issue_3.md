@@ -2,7 +2,7 @@
 
 ## Issue 2: Foreign Key Mismatch Between Tables
 
-**Problem:**
+**Problem:** <br>
 I tried to add a foreign key from rankmanagement.userid to users.userid. <br>
 However, MySQL returned an error when I executed the ALTER TABLE statement to add the foreign key. <br>
 This prevented me from establishing the relationship between the tables.
@@ -23,7 +23,7 @@ ADD CONSTRAINT FK_RANKMANAGEMENT_USERID
 2. The column rankmanagement.userid was defined as INT (signed by default).
 3. MySQL requires the data types to match exactly for foreign keys.
 
-**solution:**
+**solution:** <br>
 Make the rankmanagement.userid column INT UNSIGNED to match users.userid.
 
 ### Corrected Query:
