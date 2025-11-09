@@ -29,15 +29,11 @@ GROUP BY
 ```
 
 **⚠️ Why the Error Happens**
-you’re telling SQL: <br>
-“Group by emp.name, but also show me emp.hire_at.” <br>
-The problem: <br>
-If a name appears multiple times with different hire dates, <br>
+you’re telling SQL: “Group by emp.name, but also show me emp.hire_at.” <br>
+The problem: If a name appears multiple times with different hire dates, <br>
 SQL doesn’t know which hire_at value to show for that group. <br>
-That’s why SQL requires that: <br>
-Every column in the SELECT list must either <br>
-be inside an aggregate function (AVG, MAX, MIN, etc.), or <br>
-be explicitly listed in the GROUP BY clause.
+That’s why SQL requires that: Every column in the SELECT list must either <br>
+be inside an aggregate function (AVG, MAX, MIN, etc.), or be explicitly listed in the GROUP BY clause.
 
 **solution:**
 We added emp.hire_at to the GROUP BY clause to resolve the issue.
