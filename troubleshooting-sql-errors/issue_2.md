@@ -2,7 +2,7 @@
 
 ## Issue 2: Alias in WHERE clause
 
-**Problem:**
+**Problem:** <br>
 I tried to minimize the use of the computer system’s resources, so I initially chose a subquery statement instead of a JOIN statement. <br>
 However, when calculating the average salary per department, I encountered errors or unexpected results with the subquery approach. <br>
 
@@ -29,8 +29,8 @@ ORDER BY
 **⚠️ Why the Error Happens** <br>
 You can’t use avg_salary_per_dpt in the WHERE clause because SQL evaluates WHERE before the SELECT list. The alias doesn’t exist yet at that stage.
 
-**solution:**
-I initially wrote the same subquery in the WHERE clause instead of using its alias, but it didn’t seem efficient. So I ended up rewriting it as a JOIN instead of a subquery
+**solution:** <br>
+I initially wrote the same subquery in the WHERE clause instead of using its alias, but it didn’t seem efficient. So I ended up rewriting it as a JOIN instead of a subquery.
 
 ### Corrected Query:
 ```sql
