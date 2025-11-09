@@ -26,7 +26,7 @@ ORDER BY
 ;
 ```
 
-**⚠️ Why the Error Happens**
+**⚠️ Why the Error Happens** <br>
 You can’t use avg_salary_per_dpt in the WHERE clause because SQL evaluates WHERE before the SELECT list. The alias doesn’t exist yet at that stage.
 
 **solution:**
